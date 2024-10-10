@@ -1,7 +1,6 @@
 import * as Consts from "./consts.js"
 
 document.addEventListener('DOMContentLoaded', function () {
-	setInputValidity(Consts.Y_INPUT_ID, Consts.MIN_Y, Consts.MAX_Y);
 	setScrollShadow('header', 'shadow', 5);
 	setFormListener('#coordinates-form');
 	setRadioButtonsListener();
@@ -17,6 +16,16 @@ function getCheckedRadioButton(radioSelector) {
 function setFormListener(form) {
 	$(form).on('submit', function (event) {
 		event.preventDefault();
+		if (!checkRadioValidity(Consts.X_INPUT_SELECTOR)) {
+			return error('поле X обязательно!');
+		}
+		if (!validateInput(Consts.Y_INPUT_ID, Consts.MIN_Y, Consts.MAX_Y)) {
+			return;
+		}
+		if (!checkSelectValidity(Consts.R_INPUT_ID)) {
+			return error('поле R обязательно!')
+		}
+		document.querySelector(".error-messages").classList.add('none');
 		let x = parseFloat(getCheckedRadioButton(Consts.X_INPUT_SELECTOR).value);
 		let y = parseFloat(document.getElementById(Consts.Y_INPUT_ID).value);
 		let r = parseFloat(document.getElementById(Consts.R_INPUT_ID).value);
@@ -40,8 +49,9 @@ function setPointListener() {
 		let cx = point.getAttribute('cx');
 		let cy = point.getAttribute('cy');
 		let r = parseFloat(document.getElementById(Consts.R_INPUT_ID).value);
-		let x = parseFloat(((cx - Consts.SVG_WIDTH / 2) * r) / Consts.RADIUS_IN_PX);
+		let x = parseFloat(getCheckedRadioButton(Consts.X_INPUT_SELECTOR).value);
 		let y = parseFloat(((Consts.SVG_WIDTH / 2 - cy) * r) / Consts.RADIUS_IN_PX);
+		document.querySelector(".error-messages").classList.add('none');
 		sendRequest(x, y, r);
 	});
 }
@@ -76,7 +86,7 @@ function setRadioButtonsListener() {
 		buttons[i].addEventListener('change', function () {
 			if (
 				this !== previous &&
-				document.getElementById(Consts.R_INPUT_ID).checkValidity()
+				checkSelectValidity(Consts.R_INPUT_ID)
 			) {
 				previous = this;
 				updateLine();
@@ -163,23 +173,39 @@ function setScrollShadow(selector, shadow, px) {
 	});
 }
 
-function setInputValidity(input_id, min, max) {
+function checkRadioValidity(radio) {
+	let input = getCheckedRadioButton(radio);
+	return input != null;
+}
+
+function checkSelectValidity(select_id) {
+	return document.getElementById(select_id).value.trim() != '';
+}
+
+function validateInput(input_id, min, max) {
 	let input = document.getElementById(input_id);
 	let name = input.getAttribute('name').toUpperCase();
-	input.addEventListener('input', () => {
-		if (!isFinite(input.value)) {
-			input.setCustomValidity(name + ' должен быть числом!');
-		} else if (input.value <= min || input.value >= max) {
-			input.setCustomValidity(
-				name +
-					' должен быть в пределах от ' +
-					min +
-					' до ' +
-					max +
-					' не включительно!'
-			);
-		} else {
-			input.setCustomValidity('');
-		}
-	});
+	if (input.value.trim() == '') {
+		error('поле ' + name + ' обязательно!');
+		return false;
+	} else if (!isFinite(input.value)) {
+		error(name + ' должен быть числом!');
+		return false;
+	} else if (input.value <= min || input.value >= max) {
+		error(
+			name +
+				' должен быть в пределах от ' +
+				min +
+				' до ' +
+				max +
+				' не включительно!'
+		);
+		return false;
+	}
+	return true;
+}
+
+function error(message) {
+	document.querySelector(".error-messages").classList.remove('none');
+	document.querySelector('.error').innerHTML = message;
 }

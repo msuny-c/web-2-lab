@@ -7,12 +7,67 @@ table {
 	margin: auto;
 }
 
+.none {
+	display: none;
+}
+
+.error-message {
+	color: white;
+	text-align: center;
+}
+
+.error {
+	background-color: #ff2c00;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+}
+
 .layout-table {
 	width: 100%;
 	max-width: 1024px;
 	border-spacing: 10px;
 	border-collapse: separate;
 }
+
+.radio-inputs {
+	position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #EEE;
+  box-sizing: border-box;
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+  padding: 0.25rem;
+  width: 300px;
+  font-size: 14px;
+}
+
+.radio-inputs .radio input {
+	display: none;
+}
+
+.radio-inputs .radio .name {
+	display: flex;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	padding: .5rem 0;
+	color: rgba(51, 65, 85, 1);
+	transition: all .15s ease-in-out;
+  }
+  
+.radio-inputs .radio input:checked + .name {
+	color: #fff;
+	background-color: #00da72;
+	font-weight: 600;
+}
+
+.radio-inputs .radio {
+	flex: 1 1 auto;
+	text-align: center;
+  }
+
 
 .layout-table td {
 	padding: 10px;
@@ -26,7 +81,7 @@ table {
 	background-color: #00da72;
 }
 
-svg text {
+svg text, .radio-inputs .radio .name {
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;

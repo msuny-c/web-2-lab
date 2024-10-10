@@ -26,24 +26,44 @@
 						<table class="coordinates-form-table">
 							<tr>
 								<td class="x-form-table">
-									<input type="radio" id="x-radio-1" name="x-radio" value="-4" required>
-									<label for="x-radio-1">-4</label>
-									<input type="radio" id="x-radio-2" name="x-radio" value="-3" required>
-									<label for="x-radio-2">-3</label>
-									<input type="radio" id="x-radio-3" name="x-radio" value="-2" required>
-									<label for="x-radio-3">-2</label>
-									<input type="radio" id="x-radio-4" name="x-radio" value="-1" required>
-									<label for="x-radio-4">-1</label>
-									<input type="radio" id="x-radio-5" name="x-radio" value="0" required>
-									<label for="x-radio-5">0</label>
-									<input type="radio" id="x-radio-6" name="x-radio" value="1" required>
-									<label for="x-radio-6">1</label>
-									<input type="radio" id="x-radio-7" name="x-radio" value="2" required>
-									<label for="x-radio-7">2</label>
-									<input type="radio" id="x-radio-8" name="x-radio" value="3" required>
-									<label for="x-radio-8">3</label>
-									<input type="radio" id="x-radio-9" name="x-radio" value="4" required>
-									<label for="x-radio-9">4</label>
+								<div class="radio-inputs">
+                                    <label class="radio">
+                                        <input type="radio" name="x-radio" value="-4">
+                                        <span class="name">-4</span>
+                                    </label>
+									<label class="radio">
+                                        <input type="radio" name="x-radio" value="-3">
+                                        <span class="name">-3</span>
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="x-radio" value="-2">
+                                        <span class="name">-2</span>
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="x-radio" value="-1">
+                                        <span class="name">-1</span>
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="x-radio" value="0">
+                                        <span class="name">0</span>
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="x-radio" value="1">
+                                        <span class="name">1</span>
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="x-radio" value="2">
+                                        <span class="name">2</span>
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="x-radio" value="3">
+                                        <span class="name">3</span>
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="x-radio" value="4">
+                                        <span class="name">4</span>
+                                    </label>
+                                </div>
 								</td>
 							</tr>
 							<tr>
@@ -53,13 +73,12 @@
 										id="y-text"
 										name="y"
 										placeholder="введите Y"
-										required
 									/>
 								</td>
 							</tr>
 							<tr>
 								<td class="r-form-table">
-									<select id="r-select" name="r" required>
+									<select id="r-select" name="r">
 										<option value="">-- выберите R из списка</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -139,8 +158,9 @@
 						></polygon>
 						<line 
 							id="help-line" 
-							stroke="black" 
-							stroke-width="2" 
+							stroke="orange" 
+							stroke-width="7"
+							style="opacity:0.6" 
 							x1="150" 
 							x2="150" 
 							y1="0" 
@@ -166,6 +186,11 @@
 					</svg>
 				</td>
 			</tr>
+			<tr class="error-messages none">
+                <td class="error-message" colspan="2">
+                    <div class="error">ошибка</div>
+                </td>
+            </tr>
 			<tr class="aside">
 				<td class="result-table-cell" colspan="2">
 					<table class="result-table">
