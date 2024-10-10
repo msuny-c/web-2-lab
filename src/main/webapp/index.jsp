@@ -10,7 +10,6 @@
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="resources/styles.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-		<!--<script src="resources/consts.js" type="module"></script>-->
 		<script src="resources/script.js" type="module"></script>
 	</head>
 	<body>
