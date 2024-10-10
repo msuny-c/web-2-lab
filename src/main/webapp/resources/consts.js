@@ -1,4 +1,4 @@
-export const BASE_URL = '/simplewebapp/controller';
+export const BASE_URL = '/app/controller';
 export const METHOD = 'POST';
 
 export const RESULT_TABLE_SELECTOR = '.result-table';
