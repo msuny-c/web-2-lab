@@ -173,16 +173,26 @@
 							cx="150"
 							cy="150"
 							fill="red"
-							visibility="hidden"
-						/>
+							visibility="hidden"></circle>
                         <circle
 							id="help-point"
 							r="5"
 							cx="150"
 							cy="150"
 							fill="red"
-							visibility="hidden"
-						/>
+							visibility="hidden"></circle>
+						<% if (request.getSession().getAttribute("results") != null) { %>
+						<% ArrayList<HitResponse> array = (ArrayList<HitResponse>) request.getSession().getAttribute("results");%>
+						<% for (int i = 0; i < array.size(); i++) { %>
+						<circle
+								id="point"
+								r="5"
+								cx="<%=150 + (array.get(i).x * 100) / array.get(i).r%>"
+								cy="<%=150 - (array.get(i).y * 100) / array.get(i).r%>"
+								fill="red"
+								visibility="visible"></circle>
+						<% } %>
+						<% } %>
 					</svg>
 				</td>
 			</tr>
