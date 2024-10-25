@@ -1,4 +1,4 @@
-package ru.itmo.app;
+package ru.itmo.app.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

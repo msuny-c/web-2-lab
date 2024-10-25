@@ -1,4 +1,6 @@
-package ru.itmo.app;
+package ru.itmo.app.util;
+
+import ru.itmo.app.model.PointData;
 
 public class PointValidator {
     public static boolean validate(PointData point) {

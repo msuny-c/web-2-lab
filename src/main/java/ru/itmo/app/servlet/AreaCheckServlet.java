@@ -1,4 +1,4 @@
-package ru.itmo.app;
+package ru.itmo.app.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,10 +10,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import ru.itmo.app.model.HitResponse;
+import ru.itmo.app.model.PointData;
+import ru.itmo.app.util.PointValidator;
 
 @WebServlet("/check")
 public class AreaCheckServlet extends HttpServlet {
-    private ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper();
     @SuppressWarnings("unchecked")
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 

@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.DecimalFormat" %>
-<%@ page import="ru.itmo.app.HitResponse" %>
-
+<%@ page import="ru.itmo.app.model.HitResponse" %>
+<%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -11,6 +10,7 @@
 		<link rel="stylesheet" href="resources/styles.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script src="resources/script.js" type="module"></script>
+		<title>Web Lab 2</title>
 	</head>
 	<body>
 		<header id="header" class="header-wrapper">
@@ -181,17 +181,18 @@
 							cy="150"
 							fill="red"
 							visibility="hidden"></circle>
-						<% if (request.getSession().getAttribute("results") != null) { %>
-						<% ArrayList<HitResponse> array = (ArrayList<HitResponse>) request.getSession().getAttribute("results");%>
-						<% for (int i = 0; i < array.size(); i++) { %>
+						<% if (session.getAttribute("results") != null) { %>
+						<% @SuppressWarnings("unchecked") var array = (List<HitResponse>) session.getAttribute("results");%>
+						<% for (HitResponse data : array) { %>
 						<circle
 								id="point"
 								r="5"
-								cx="<%=150 + (array.get(i).x * 100) / array.get(i).r%>"
-								cy="<%=150 - (array.get(i).y * 100) / array.get(i).r%>"
+								cx="<%=150 + (data.x * 100) / data.r%>"
+								cy="<%=150 - (data.y * 100) / data.r%>"
 								fill="red"
-								visibility="visible"></circle>
-						<% } %>
+								visibility="visible">
+						</circle>
+							<% } %>
 						<% } %>
 					</svg>
 				</td>
@@ -214,19 +215,19 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% DecimalFormat format = new DecimalFormat("0.######"); %>
-                            <% if (request.getSession().getAttribute("results") != null) { %>
-                        <% ArrayList<HitResponse> array = (ArrayList<HitResponse>) request.getSession().getAttribute("results");%>
-                        <% for (int i = 0; i < array.size(); i++) { %>
+							<%! DecimalFormat format = new DecimalFormat("0.######"); %>
+                            <% if (session.getAttribute("results") != null) { %>
+							<% @SuppressWarnings("unchecked") var array = (List<HitResponse>) session.getAttribute("results");%>
+							<% for (HitResponse data : array) { %>
                             <tr>
 								<td></td>
-                                <td><%= format.format(array.get(i).x) %></td>
-                                <td><%= format.format(array.get(i).y) %></td>
-                                <td><%= format.format(array.get(i).r) %></td>
-                                <td><%= array.get(i).hit ? "<span class='success-hit'>попадание</span>" : "<span class='fail-hit'>промах</span>"%></td>
+                                <td><%= format.format(data.x) %></td>
+                                <td><%= format.format(data.y) %></td>
+                                <td><%= format.format(data.r) %></td>
+                                <td><%= data.hit ? "<span class='success-hit'>попадание</span>" : "<span class='fail-hit'>промах</span>"%></td>
                             </tr>
-                        <% } %>
-                    <% } %>
+								<% } %>
+							<% } %>
                         </tbody>
 					</table>
 				</td>

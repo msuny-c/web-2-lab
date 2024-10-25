@@ -1,4 +1,4 @@
-package ru.itmo.app;
+package ru.itmo.app.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import ru.itmo.app.model.IHeaderCounter;
 
 import java.io.IOException;
 import java.util.Objects;

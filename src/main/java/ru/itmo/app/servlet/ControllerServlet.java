@@ -1,4 +1,4 @@
-package ru.itmo.app;
+package ru.itmo.app.servlet;
 
 import java.io.IOException;
 
@@ -10,10 +10,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import ru.itmo.app.model.PointData;
 
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
-    private ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper();
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException {
